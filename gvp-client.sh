@@ -34,9 +34,9 @@ $sample_cmd /var/tmp/gvp.log $mountpoint
 
 for min in `seq 1 $sample_count` ; do
   sleep $sample_interval
-  rm -f /var/tmp/gvp.log
+  rm -f /var/tmp/gvp.log.$volume_name
   $sample_cmd /var/tmp/gvp.log $mountpoint
-  ( date ; cat /var/tmp/gvp.log ) >> $logfile
+  ( echo $sample_count $sample_interval ; date ; cat /var/tmp/gvp.log.$volume_name ) >> $logfile
 done
 echo "output written to $logfile"
 
